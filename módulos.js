@@ -11,6 +11,8 @@ const modelo = () => {
   atividade.dia = prompt("Qual o dia? ");
   let resposta;
 
+  console.log("Quando terminar de digitar as atividades digite 'fim'!")
+
   while (true) {
     resposta = prompt("O que fez nesse dia? ");
 
@@ -33,7 +35,9 @@ const criar = () => {
 
 const listar = () => {
   atividades.forEach((atividade, indice) => {
-    console.log(`${indice + 1}. ${atividade}`);
+    console.log(`${indice + 1}. ${atividade.dia}`);
+    
+    atividade.descriçao.forEach(descriçao => console.log(`- ${descriçao}`));
   });
 };
 
