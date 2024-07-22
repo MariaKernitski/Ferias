@@ -3,60 +3,65 @@ const prompt = require("prompt-sync")();
 const atividades = [];
 
 const modelo = () => {
-    let atividade = {
-        dia: undefined,
-        descriçao: []
-    };
+  let atividade = {
+    dia: undefined,
+    descriçao: [],
+  };
 
-    atividade.dia = prompt("Qual o dia? ");
-    let resposta;
+  atividade.dia = prompt("Qual o dia? ");
+  let resposta;
 
-    while(true) {
-        resposta = prompt("O que fez nesse dia? ")
+  while (true) {
+    resposta = prompt("O que fez nesse dia? ");
 
-        if(resposta == "fim") {
-            break;
-        }
-        else {
-            atividade.descriçao.push(resposta);
-        }
+    if (resposta == "fim") {
+      break;
+    } else {
+      atividade.descriçao.push(resposta);
     }
-    return atividade;
-}
+  }
+  return atividade;
+};
 
 const criar = () => {
+  let atividade = modelo();
 
-    let atividade = modelo();
+  atividades.push(atividade);
 
-    atividades.push(atividade);
-
-    console.log("Atividade cadastrada com sucesso!")
-}
+  console.log("Atividade cadastrada com sucesso!");
+};
 
 const listar = () => {
-    atividades.forEach((atividade, indice) => {
-        console.log(`${indice + 1}. ${atividade}`)
-    })
-}
+  atividades.forEach((atividade, indice) => {
+    console.log(`${indice + 1}. ${atividade}`);
+  });
+};
 
 const atualizar = () => {
-    listar();
+  listar();
 
-    let indice = prompt("Qual índice deseja atualizar? ")
+  let indice = prompt("Qual índice deseja atualizar? ");
 
-    let atividade = modelo()
+  let atividade = modelo();
 
-    atividades[--indice] = atividade;
+  atividades[--indice] = atividade;
 
-    console.log("Índice atualizado com sucesso!")
-}
+  console.log("Índice atualizado com sucesso!");
+};
 
 const remover = () => {
-    listar();
+  listar();
 
-    let indice = prompt("Qual índice deseja remover? ")
+  let indice = prompt("Qual índice deseja remover? ");
 
-    atividades.splice(--indice, 1);
+  atividades.splice(--indice, 1);
 
-    console.log("Índice removido com sucesso!")
-}
+  console.log("Índice removido com sucesso!");
+};
+
+module.exports = {
+  criar,
+  atualizar,
+  remover,
+  listar,
+};
